@@ -1,0 +1,27 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Dashboard</h1>
+  <mat-grid-list cols="2" rowHeight="250px">
+    <mat-grid-tile *ngFor="let hero of HEROS" [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            {{ hero.name }}
+          </mat-card-title>
+          <mat-card-subtitle>
+            {{ hero.power }}
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <p>Enemy: {{ hero.enemy }}</p>
+          <p>{{ hero.description }}</p>
+          <!-- <button mat-raised-button color="primary" routerLink="/detail/{{ hero.id }}">View Details</button> -->
+        </mat-card-content>
+        <mat-divider class="margin-divider"></mat-divider>
+        <mat-card-actions class="button-separation" align="end">
+          <button mat-stroked-button color="primary">Edit</button>
+          <button mat-stroked-button color="warn">Delete</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
