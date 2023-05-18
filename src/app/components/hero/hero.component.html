@@ -1,0 +1,19 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title-group>
+      <mat-card-title>{{ hero.name }}</mat-card-title>
+      <mat-card-subtitle>ID: {{ hero.id }}</mat-card-subtitle>
+      <img
+        mat-card-md-image
+        src="https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/644-superman.jpg"
+        alt="Superman Image"
+      />
+    </mat-card-title-group>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p>{{ hero.description }}</p>
+    <p>Power: {{ hero.power }}</p>
+    <p>Enemy: {{ hero.enemy }}</p>
+  </mat-card-content>
+</mat-card>
