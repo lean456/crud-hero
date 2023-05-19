@@ -1,6 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { map } from 'rxjs/operators';
 import { HeroService } from 'src/app/services/hero.service';
 
 @Component({
@@ -10,5 +8,5 @@ import { HeroService } from 'src/app/services/hero.service';
 })
 export class DashboardComponent {
   constructor(private heroService: HeroService) {}
-  heros = this.heroService.getHeros();
+  heros = this.heroService.getSuperhero();
 }

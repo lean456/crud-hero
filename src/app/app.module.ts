@@ -13,6 +13,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HeroComponent } from './components/hero/hero.component';
 import { AppRoutingModule } from './app-routing.module';
+import { MatChipsModule } from '@angular/material/chips';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, DashboardComponent, HeroComponent],
@@ -27,6 +29,8 @@ import { AppRoutingModule } from './app-routing.module';
     MatButtonModule,
     MatDividerModule,
     MatToolbarModule,
+    MatChipsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card class="margin-card">
   <mat-card-header>
     <mat-card-title-group>
       <mat-card-title>{{ hero.name }}</mat-card-title>
@@ -14,6 +14,10 @@
   <mat-card-content>
     <p>{{ hero.description }}</p>
     <p>Power: {{ hero.power }}</p>
-    <p>Enemy: {{ hero.enemy }}</p>
+    <mat-chip-listbox aria-label="Fish selection">
+      <mat-chip-option selected disabled color="warn"
+        >Enemy: {{ hero.enemy }}</mat-chip-option
+      >
+    </mat-chip-listbox>
   </mat-card-content>
 </mat-card>
