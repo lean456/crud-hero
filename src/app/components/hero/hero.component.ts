@@ -18,6 +18,7 @@ export class HeroComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.heroService.getAllSuperheroImage();
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam !== null) {
       this.heroService.getSuperheroById(+idParam).subscribe(
@@ -29,5 +30,10 @@ export class HeroComponent implements OnInit {
         }
       );
     }
+  }
+
+  getImageSuperhero(name: string) {
+    console.log(this.heroService.getSuperheroImage(name));
+    return this.heroService.getSuperheroImage(name);
   }
 }

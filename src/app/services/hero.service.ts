@@ -7,9 +7,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class HeroService {
+  cacheImages: any = [];
   constructor(private http: HttpClient) {}
 
-  private _url = 'http://localhost:3000/api/superheros';
+  private _url = 'https://crud-mock.onrender.com/superheros';
   getSuperheroById(id: number): Observable<Hero> {
     return this.http.get(this._url + '/' + id) as Observable<Hero>;
   }
@@ -27,5 +28,23 @@ export class HeroService {
 
   deleteHero(id: number) {
     return this.http.delete(this._url + '/' + id) as Observable<Hero>;
+  }
+  getSuperheroImage(name: string): string {
+    let image: any = {};
+    if (this.cacheImages) {
+      image = this.cacheImages.find((item: any) => {
+        if (item.name === name) {
+          return item.images.md;
+        }
+      });
+    }
+    return image ? image.images.md : '';
+  }
+  getAllSuperheroImage() {
+    this.http
+      .get('https://akabab.github.io/superhero-api/api/all.json')
+      .subscribe((data) => {
+        this.cacheImages = data;
+      });
   }
 }

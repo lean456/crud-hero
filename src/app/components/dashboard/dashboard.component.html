@@ -15,7 +15,11 @@
           </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-          <p>Enemy: {{ hero.enemy }}</p>
+          <mat-chip-listbox class="mat-chip-edit-input">
+            <mat-chip-option selected disabled color="warn"
+              >Enemy: {{ hero.enemy }}</mat-chip-option
+            >
+          </mat-chip-listbox>
           <p>{{ hero.description }}</p>
         </mat-card-content>
         <mat-divider class="margin-divider"></mat-divider>

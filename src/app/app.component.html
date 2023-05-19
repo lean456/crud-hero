@@ -1,8 +1,14 @@
+<app-loader></app-loader>
 <mat-toolbar color="primary">
-  <span>Crud Hero</span>
-  <span class="example-spacer"></span>
-  <button mat-button routerLink="/hero">
-    <mat-icon>add_box</mat-icon> Add
-  </button>
+  <mat-toolbar-row>
+    <span>Superhero App</span>
+    <button mat-button routerLink="/dashboard">
+      <mat-icon>home</mat-icon> Home
+    </button>
+    <span class="example-spacer"></span>
+    <button mat-button routerLink="/hero">
+      <mat-icon>add_box</mat-icon> Add
+    </button>
+  </mat-toolbar-row>
 </mat-toolbar>
 <router-outlet></router-outlet>

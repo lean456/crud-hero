@@ -14,10 +14,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { HeroComponent } from './components/hero/hero.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MatChipsModule } from '@angular/material/chips';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { LoaderInterceptor } from './interceptors/loader.interceptor';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, HeroComponent],
+  declarations: [AppComponent, DashboardComponent, HeroComponent, LoaderComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,
@@ -32,7 +34,13 @@ import { HttpClientModule } from '@angular/common/http';
     MatChipsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

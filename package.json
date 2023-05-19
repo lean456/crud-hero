@@ -7,7 +7,7 @@
     "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "vercel-build": "ng build --configuration production npx json-server --watch db.json",
+    "vercel-build": "ng build --configuration production",
     "mock-api": "json-server --watch db.json"
   },
   "private": true,

@@ -8,5 +8,6 @@ import { HeroService } from 'src/app/services/hero.service';
 })
 export class DashboardComponent {
   constructor(private heroService: HeroService) {}
+
   heros = this.heroService.getSuperhero();
 }
