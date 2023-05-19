@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class HeroService {
   constructor(private http: HttpClient) {}
 
-  private _url = 'http://localhost:3000/superheros';
+  private _url = 'http://localhost:3000/api/superheros';
   getSuperheroById(id: number): Observable<Hero> {
     return this.http.get(this._url + '/' + id) as Observable<Hero>;
   }
