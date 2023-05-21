@@ -17,13 +17,24 @@ import { MatChipsModule } from '@angular/material/chips';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
 import { LoaderComponent } from './components/loader/loader.component';
+import { SnackbarComponent } from './components/snackbar/snackbar.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, HeroComponent, LoaderComponent],
+  declarations: [
+    AppComponent,
+    DashboardComponent,
+    HeroComponent,
+    LoaderComponent,
+    SnackbarComponent,
+  ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
@@ -33,6 +44,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     MatToolbarModule,
     MatChipsModule,
     HttpClientModule,
+    MatSnackBarModule,
+    MatInputModule,
   ],
   providers: [
     {

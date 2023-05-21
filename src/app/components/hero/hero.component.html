@@ -1,20 +1,40 @@
 <app-loader></app-loader>
 <mat-card class="margin-card">
-  <mat-card-header>
-    <mat-card-title-group>
-      <mat-card-title>{{ hero.name }}</mat-card-title>
-      <mat-card-subtitle>ID: {{ hero.id }}</mat-card-subtitle>
-      <img
+  <form [formGroup]="form">
+    <mat-card-header>
+      <mat-card-subtitle *ngIf="idParam">ID: {{ hero.id }} </mat-card-subtitle>
+      <!-- <img
         mat-card-md-image
         src="{{ getImageSuperhero(hero.name) }}"
         alt="{{ hero.name }}"
-      />
-    </mat-card-title-group>
-  </mat-card-header>
+        /> -->
+    </mat-card-header>
 
-  <mat-card-content>
-    <p>{{ hero.description }}</p>
-    <p>Power: {{ hero.power }}</p>
-    <p>Enemy: {{ hero.enemy }}</p>
-  </mat-card-content>
+    <mat-card-content>
+      <mat-grid-list cols="4">
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field class="description-width">
+            <mat-label>Name</mat-label>
+            <input type="email" matInput formControlName="name" />
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field>
+            <mat-label>Enemy</mat-label>
+            <input matInput formControlName="enemy" />
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field>
+            <mat-label>Power</mat-label>
+            <input matInput formControlName="power" /> </mat-form-field
+        ></mat-grid-tile>
+        <mat-grid-tile [colspan]="4" [rowspan]="1">
+          <mat-form-field class="description-width">
+            <mat-label>Description</mat-label>
+            <input matInput formControlName="description" /> </mat-form-field
+        ></mat-grid-tile>
+      </mat-grid-list>
+    </mat-card-content>
+  </form>
 </mat-card>

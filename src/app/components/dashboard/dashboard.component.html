@@ -5,7 +5,7 @@
       [colspan]="1"
       [rowspan]="1"
     >
-      <mat-card class="dashboard-card">
+      <mat-card class="dashboard-card" *ngIf="hero; else notHeros">
         <mat-card-header>
           <mat-card-title>
             {{ hero.name }}
@@ -15,11 +15,8 @@
           </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-          <mat-chip-listbox class="mat-chip-edit-input">
-            <mat-chip-option selected disabled color="warn"
-              >Enemy: {{ hero.enemy }}</mat-chip-option
-            >
-          </mat-chip-listbox>
+          <mat-chip class="selected-chip">Enemy: {{ hero.enemy }}</mat-chip>
+
           <p>{{ hero.description }}</p>
         </mat-card-content>
         <mat-divider class="margin-divider"></mat-divider>
@@ -32,9 +29,12 @@
             Edit
           </button>
 
-          <button mat-stroked-button color="warn">Delete</button>
+          <button mat-stroked-button color="warn" (click)="deleteHero(hero.id)">
+            Delete
+          </button>
         </mat-card-actions>
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
 </div>
+<ng-template #notHeros><h3>NO hay superheros</h3></ng-template>

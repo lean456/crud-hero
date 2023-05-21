@@ -27,7 +27,7 @@ export class HeroService {
   }
 
   deleteHero(id: number) {
-    return this.http.delete(this._url + '/' + id) as Observable<Hero>;
+    return this.http.delete(this._url + '/' + id);
   }
   getSuperheroImage(name: string): string {
     let image: any = {};
