@@ -33,7 +33,6 @@ export class HeroComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.heroService.getAllSuperheroImage();
     this.idParam = this.route.snapshot.paramMap.get('id');
     if (this.idParam !== null) {
       this.heroService.getSuperheroById(+this.idParam).subscribe((hero) => {
@@ -56,20 +55,25 @@ export class HeroComponent implements OnInit {
     this.hero = this.form.value;
     this.hero.id = +this.idParam!;
     if (this.idParam !== null) {
-      this.heroService.updateHero(this.hero).subscribe();
+      this.heroService.updateHero(this.hero).subscribe((data) => {
+        this.gotoDashboard();
+      });
     } else {
-      this.heroService.postSuperhero(this.hero).subscribe();
+      this.heroService.postSuperhero(this.hero).subscribe((data) => {
+        this.gotoDashboard();
+      });
     }
     this._snackBar.open('Hero saved', undefined, {
       duration: 2000,
     });
-    this.gotoDashboard();
   }
   gotoDashboard() {
     window.location.href = '/dashboard';
   }
-
-  getImageSuperhero(name: string) {
-    return this.heroService.getSuperheroImage(name);
+  openListHeros() {
+    window.open(
+      'https://akabab.github.io/superhero-api/api/glossary.html',
+      '_blank'
+    );
   }
 }

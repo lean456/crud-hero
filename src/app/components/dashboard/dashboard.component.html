@@ -8,7 +8,7 @@
       Search
     </button>
   </div>
-  <mat-grid-list cols="2" rowHeight="300px">
+  <mat-grid-list cols="2" rowHeight="330px">
     <mat-grid-tile
       *ngFor="let hero of heros | async"
       [colspan]="1"
@@ -16,12 +16,19 @@
     >
       <mat-card class="dashboard-card" *ngIf="hero; else notHeros">
         <mat-card-header>
-          <mat-card-title>
-            {{ hero.name | uppercase }}
-          </mat-card-title>
-          <mat-card-subtitle>
-            {{ hero.power }}
-          </mat-card-subtitle>
+          <mat-card-title-group>
+            <mat-card-title>
+              {{ hero.name | uppercase }}
+            </mat-card-title>
+            <mat-card-subtitle>
+              {{ hero.power }}
+            </mat-card-subtitle>
+            <img
+              mat-card-md-image
+              src="{{ getImageSuperhero(hero.name) }}"
+              alt="{{ hero.name }}"
+            />
+          </mat-card-title-group>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
           <mat-chip class="selected-chip">Enemy: {{ hero.enemy }}</mat-chip>

@@ -2,15 +2,8 @@
 <mat-card class="margin-card">
   <form [formGroup]="form">
     <mat-card-header>
-      <mat-card-title>{{
-        idParam ? "Edit hero" : "Add hero" + idParam
-      }}</mat-card-title>
+      <mat-card-title>{{ idParam ? "Edit hero" : "Add hero" }}</mat-card-title>
       <mat-card-subtitle *ngIf="idParam">ID: {{ hero.id }} </mat-card-subtitle>
-      <!-- <img
-        mat-card-md-image
-        src="{{ getImageSuperhero(hero.name) }}"
-        alt="{{ hero.name }}"
-        /> -->
     </mat-card-header>
 
     <mat-card-content>
@@ -55,6 +48,10 @@
         >
       </mat-grid-list>
       <mat-card-actions align="end">
+        <p class="center-text">
+          You can find a name of superhero
+          <button mat-button (click)="openListHeros()">here</button>
+        </p>
         <button
           mat-raised-button
           color="primary"

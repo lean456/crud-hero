@@ -16,7 +16,9 @@ export class DashboardComponent {
     private heroService: HeroService,
     private _snackBar: MatSnackBar,
     public dialog: MatDialog
-  ) {}
+  ) {
+    this.heroService.getAllSuperheroImage();
+  }
 
   heros = this.heroService.getSuperhero();
   deleteHero(id: number): void {
@@ -47,5 +49,9 @@ export class DashboardComponent {
         this.deleteHero(id);
       }
     });
+  }
+
+  getImageSuperhero(name: string) {
+    return this.heroService.getSuperheroImage(name);
   }
 }

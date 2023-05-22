@@ -40,7 +40,7 @@ export class HeroService {
         }
       });
     }
-    return image ? image.images.md : '';
+    return image ? image.images.md : `assets/not-found.png`;
   }
   getAllSuperheroImage() {
     this.http
