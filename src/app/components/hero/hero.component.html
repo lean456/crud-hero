@@ -2,6 +2,9 @@
 <mat-card class="margin-card">
   <form [formGroup]="form">
     <mat-card-header>
+      <mat-card-title>{{
+        idParam ? "Edit hero" : "Add hero" + idParam
+      }}</mat-card-title>
       <mat-card-subtitle *ngIf="idParam">ID: {{ hero.id }} </mat-card-subtitle>
       <!-- <img
         mat-card-md-image
@@ -11,30 +14,56 @@
     </mat-card-header>
 
     <mat-card-content>
-      <mat-grid-list cols="4">
+      <mat-grid-list rowHeight="30vh" cols="4">
         <mat-grid-tile [colspan]="2" [rowspan]="1">
           <mat-form-field class="description-width">
             <mat-label>Name</mat-label>
-            <input type="email" matInput formControlName="name" />
+            <input matInput formControlName="name" />
+            <mat-error *ngIf="form.controls['name'].hasError('required')">
+              Name is <strong>required</strong>
+            </mat-error>
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1" [rowspan]="1">
           <mat-form-field>
             <mat-label>Enemy</mat-label>
             <input matInput formControlName="enemy" />
+            <mat-error *ngIf="form.controls['enemy'].hasError('required')">
+              Enemy is <strong>required</strong>
+            </mat-error>
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1" [rowspan]="1">
           <mat-form-field>
             <mat-label>Power</mat-label>
-            <input matInput formControlName="power" /> </mat-form-field
-        ></mat-grid-tile>
+            <input matInput formControlName="power" />
+            <mat-error *ngIf="form.controls['power'].hasError('required')">
+              Power is <strong>required</strong>
+            </mat-error>
+          </mat-form-field></mat-grid-tile
+        >
         <mat-grid-tile [colspan]="4" [rowspan]="1">
           <mat-form-field class="description-width">
             <mat-label>Description</mat-label>
-            <input matInput formControlName="description" /> </mat-form-field
-        ></mat-grid-tile>
+            <input matInput formControlName="description" />
+            <mat-error
+              *ngIf="form.controls['description'].hasError('required')"
+            >
+              Description is <strong>required</strong>
+            </mat-error>
+          </mat-form-field></mat-grid-tile
+        >
       </mat-grid-list>
+      <mat-card-actions align="end">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="saveHero()"
+          [disabled]="form.invalid"
+        >
+          Save
+        </button>
+      </mat-card-actions>
     </mat-card-content>
   </form>
 </mat-card>

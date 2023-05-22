@@ -1,5 +1,14 @@
 <div class="grid-container">
-  <mat-grid-list cols="2" rowHeight="250px">
+  <div class="center-filter">
+    <mat-form-field class="center-filter__filter">
+      <mat-label>Filter</mat-label>
+      <input matInput type="text" matInput [formControl]="filter" />
+    </mat-form-field>
+    <button mat-stroked-button color="primary" (click)="applyFilter()">
+      Search
+    </button>
+  </div>
+  <mat-grid-list cols="2" rowHeight="300px">
     <mat-grid-tile
       *ngFor="let hero of heros | async"
       [colspan]="1"
@@ -8,7 +17,7 @@
       <mat-card class="dashboard-card" *ngIf="hero; else notHeros">
         <mat-card-header>
           <mat-card-title>
-            {{ hero.name }}
+            {{ hero.name | uppercase }}
           </mat-card-title>
           <mat-card-subtitle>
             {{ hero.power }}
@@ -20,18 +29,11 @@
           <p>{{ hero.description }}</p>
         </mat-card-content>
         <mat-divider class="margin-divider"></mat-divider>
-        <mat-card-actions class="button-separation" align="end">
-          <button
-            mat-stroked-button
-            routerLink="/hero/{{ hero.id }}"
-            color="primary"
-          >
-            Edit
-          </button>
-
-          <button mat-stroked-button color="warn" (click)="deleteHero(hero.id)">
-            Delete
-          </button>
+        <mat-card-actions align="end">
+          <app-management-buttons
+            (delete)="openDialogDelete($event, hero.id, hero.name)"
+            (edit)="editHero($event, hero.id)"
+          ></app-management-buttons>
         </mat-card-actions>
       </mat-card>
     </mat-grid-tile>

@@ -4,6 +4,7 @@ import { HeroService } from 'src/app/services/hero.service';
 import { Hero } from 'src/app/hero-model';
 import { Observable } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-hero',
@@ -18,15 +19,16 @@ export class HeroComponent implements OnInit {
   constructor(
     private heroService: HeroService,
     private route: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private _snackBar: MatSnackBar
   ) {}
 
   createForm(): FormGroup {
     return this.fb.group({
-      name: [this.hero.name, Validators.required],
-      description: [this.hero.description, Validators.required],
-      power: [this.hero.power, Validators.required],
-      enemy: [this.hero.enemy, Validators.required],
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      power: ['', Validators.required],
+      enemy: ['', Validators.required],
     });
   }
 
@@ -36,9 +38,35 @@ export class HeroComponent implements OnInit {
     if (this.idParam !== null) {
       this.heroService.getSuperheroById(+this.idParam).subscribe((hero) => {
         this.hero = hero;
+        this.pushHeroToForm();
       });
     }
     this.form = this.createForm();
+  }
+  pushHeroToForm() {
+    this.form.patchValue({
+      name: this.hero.name,
+      description: this.hero.description,
+      power: this.hero.power,
+      enemy: this.hero.enemy,
+    });
+  }
+
+  saveHero() {
+    this.hero = this.form.value;
+    this.hero.id = +this.idParam!;
+    if (this.idParam !== null) {
+      this.heroService.updateHero(this.hero).subscribe();
+    } else {
+      this.heroService.postSuperhero(this.hero).subscribe();
+    }
+    this._snackBar.open('Hero saved', undefined, {
+      duration: 2000,
+    });
+    this.gotoDashboard();
+  }
+  gotoDashboard() {
+    window.location.href = '/dashboard';
   }
 
   getImageSuperhero(name: string) {

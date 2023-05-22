@@ -17,10 +17,12 @@ import { MatChipsModule } from '@angular/material/chips';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
 import { LoaderComponent } from './components/loader/loader.component';
-import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { ManagementButtonsComponent } from './components/management-buttons/management-buttons.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { MatInputModule } from '@angular/material/input';
     DashboardComponent,
     HeroComponent,
     LoaderComponent,
-    SnackbarComponent,
+    ManagementButtonsComponent,
+    ModalComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -46,6 +49,7 @@ import { MatInputModule } from '@angular/material/input';
     HttpClientModule,
     MatSnackBarModule,
     MatInputModule,
+    MatDialogModule,
   ],
   providers: [
     {

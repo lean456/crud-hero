@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Hero } from '../hero-model';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HeroService {
+  hero: Observable<Hero[]> = of([]);
   cacheImages: any = [];
   constructor(private http: HttpClient) {}
 
@@ -15,7 +16,8 @@ export class HeroService {
     return this.http.get(this._url + '/' + id) as Observable<Hero>;
   }
   getSuperhero(): Observable<Hero[]> {
-    return this.http.get(this._url) as Observable<Hero[]>;
+    this.hero = this.http.get(this._url) as Observable<Hero[]>;
+    return this.hero;
   }
 
   postSuperhero(hero: Hero): Observable<Hero> {
@@ -46,5 +48,20 @@ export class HeroService {
       .subscribe((data) => {
         this.cacheImages = data;
       });
+  }
+  getFilterSuperhero(filterValue: string): Observable<Hero[]> {
+    return this.hero.pipe(
+      map((data) => {
+        const filteredHeroes = data.filter((hero) => {
+          return Object.values(hero).some((value) => {
+            return (
+              typeof value === 'string' &&
+              value.toLowerCase().includes(filterValue.toLowerCase())
+            );
+          });
+        });
+        return filteredHeroes;
+      })
+    );
   }
 }

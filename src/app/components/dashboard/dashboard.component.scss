@@ -1,5 +1,6 @@
 .selected-chip {
   background-color: #f44336 !important;
+  margin: 10px auto 10px;
 }
 .grid-container {
   margin: 20px;
@@ -23,6 +24,12 @@
 .dashboard-card-content {
   text-align: center;
 }
-.button-separation .mat-mdc-button-base {
-  margin: 8px 8px 8px 0;
+
+.center-filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__filter {
+    margin: 0 10px;
+  }
 }
