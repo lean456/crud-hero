@@ -6,11 +6,16 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 describe('AppComponent', () => {
+  const mockedLoaderService = jasmine.createSpyObj('LoaderService', [
+    'show',
+    'hide',
+  ]);
+
   beforeEach(() =>
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, MatToolbarModule, MatIconModule],
       declarations: [AppComponent, LoaderComponent],
-      providers: [LoaderService],
+      providers: [{ provide: LoaderService, useValue: mockedLoaderService }],
     })
   );
 
