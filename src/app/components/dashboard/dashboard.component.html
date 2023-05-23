@@ -8,13 +8,17 @@
       Search
     </button>
   </div>
-  <mat-grid-list cols="2" rowHeight="330px">
+  <mat-grid-list
+    *ngIf="(heros | async)?.length; else notHeros"
+    cols="2"
+    rowHeight="330px"
+  >
     <mat-grid-tile
       *ngFor="let hero of heros | async"
       [colspan]="1"
       [rowspan]="1"
     >
-      <mat-card class="dashboard-card" *ngIf="hero; else notHeros">
+      <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title-group>
             <mat-card-title>
@@ -46,4 +50,4 @@
     </mat-grid-tile>
   </mat-grid-list>
 </div>
-<ng-template #notHeros><h3>NO hay superheros</h3></ng-template>
+<ng-template #notHeros><h2>NO hay superheros</h2></ng-template>

@@ -1,20 +1,31 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { LoaderService } from './services/loader.service';
+import { LoaderComponent } from './components/loader/loader.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
 describe('AppComponent', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-    declarations: [AppComponent]
-  }));
+  beforeEach(() =>
+    TestBed.configureTestingModule({
+      imports: [RouterTestingModule, MatToolbarModule, MatIconModule],
+      declarations: [AppComponent, LoaderComponent],
+      providers: [LoaderService],
+    })
+  );
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
+    fixture.detectChanges();
     expect(app).toBeTruthy();
   });
 
   it(`should have as title 'crud-hero'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
+    fixture.detectChanges();
+
     expect(app.title).toEqual('crud-hero');
   });
 
@@ -22,6 +33,8 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('crud-hero app is running!');
+    expect(compiled.querySelector('mat-toolbar span')?.textContent).toContain(
+      'Superhero App'
+    );
   });
 });
