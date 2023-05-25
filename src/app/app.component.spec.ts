@@ -26,6 +26,12 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
+  it('should have router-outlet', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('router-outlet')).toBeTruthy();
+  });
+
   it(`should have as title 'crud-hero'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;

@@ -44,6 +44,17 @@ describe('HeroComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should called gotoDashboard()', () => {
+    spyOn(component, 'gotoDashboard');
+    component.gotoDashboard();
+    expect(component.gotoDashboard).toHaveBeenCalled();
+  });
+  it('should call saveHero()', () => {
+    spyOn(component, 'saveHero');
+    component.saveHero();
+    expect(component.saveHero).toHaveBeenCalled();
+  });
+
   it('createForm should create a form with 4 controls', () => {
     component.createForm();
     expect(component.form.contains('name')).toBeTruthy();
